@@ -1,0 +1,102 @@
+<!-- This Ant build file illustrates how to process a program library,
+     such that it remains usable as a library.
+     Usage: ant -f library.xml -->
+
+<project basedir="." default="build" name="OriginWiFiSpot">
+    <property name="android.sdk.home" value="D:/Android/android-sdk-windows"/>
+	<property name="proguard.jar" value="${android.sdk.home}/tools/proguard/lib/proguard.jar"/>
+	<property name="project.dir" value="D:/Dev/Origin/Tools/OriginWiFiSpot"/>
+	<property name="out.dir" value="D:/Dev/Origin/Tools/OriginWiFiSpot/sdk"/>
+	<property name="outdir" value="../bin" />  
+    <property name="outdir-classes" value="${outdir}/classes" />
+    <property name="injars-home" value="${outdir}/source.jar" />
+    <property name="outjars-home" value="${out.dir}/OriginWiFi.jar" />
+    <property name="R-home" value="${outdir}/classes/com/origin/wifispot"/>
+    
+	<target name="build">
+	    <delete file="${injars-home}"/> 
+	    <delete file="${outjars-home}"/> 
+	    
+	    <delete>
+    		<fileset dir="${R-home}" includes="R*.class"/>
+		</delete>
+		<delete>
+    		<fileset dir="${R-home}" includes="BuildConfig.class"/>
+		</delete>
+	    
+		
+		<jar basedir="${outdir-classes}" destfile="${injars-home}">		
+
+        </jar>
+		
+		<java jar="${proguard.jar}" fork="true" failonerror="true">
+		    <jvmarg value="-Dmaximum.inlined.code.length=32" /> 
+		    <arg value="-injars ${injars-home}" />  
+            <arg value="-outjars ${outjars-home}" />
+            <arg value="-libraryjars ${android.sdk.home}/platforms/android-14/android.jar" />  
+            <arg value="-libraryjars ${android.sdk.home}/tools/support/annotations.jar" />  
+      
+            
+            <arg value="-dontpreverify"/>  
+            <arg value="-dontoptimize"/>  
+            <arg value="-dontusemixedcaseclassnames"/>  
+            <!--  
+            <arg value="-repackageclasses ''"/> 
+            --> 
+            <arg value="-allowaccessmodification"/>
+            <arg value="-optimizationpasses 5"/>  
+            <arg value="-verbose"/>  
+            <arg value="-dontskipnonpubliclibraryclasses"/>  
+            <arg value="-dontskipnonpubliclibraryclassmembers"/>
+            
+            <arg value="-keep public class * extends android.app.Activity"/>
+			<arg value="-keep public class * extends android.app.Application"/>
+			<arg value="-keep public class * extends android.app.Service"/>
+			<arg value="-keep public class * extends android.content.BroadcastReceiver"/>
+			<arg value="-keep public class * extends android.content.ContentProvider"/>
+			<arg value="-keep public class * extends android.app.backup.BackupAgentHelper"/>
+			<arg value="-keep public class * extends android.preference.Preference"/>
+			<arg value="-keep public class com.android.vending.licensing.ILicensingService"/>
+			
+			
+			<arg value="-keep public class com.origin.wifispot.WifiStateListener {
+			*;
+			}"/>
+			
+			<arg value="-keep public class com.origin.wifispot.MatrixWiFi {
+			*;
+			}"/>
+			
+			<arg value="-keep class **.R$* {
+			*;
+			}"/>
+			
+			
+			<arg value="-keepclasseswithmembernames class * {
+			    native &lt;methods&gt;;
+			}"/>
+			
+			<arg value="-keepclasseswithmembers class * {
+			    public &lt;init&gt;(android.content.Context, android.util.AttributeSet);
+			}"/>
+			
+			<arg value="-keepclasseswithmembers class * {
+			    public &lt;init&gt;(android.content.Context, android.util.AttributeSet, int);
+			}"/>
+			
+			<arg value="-keepclassmembers class * extends android.app.Activity {
+			   public void *(android.view.View);
+			}"/>
+			
+			<arg value="-keepclassmembers enum * {
+			    public static **[] values();
+			    public static ** valueOf(java.lang.String);
+			}"/>
+			
+			<arg value="-keep class * implements android.os.Parcelable {
+			  public static final android.os.Parcelable$Creator *;
+			}"/>
+		</java>
+	</target>
+
+</project>

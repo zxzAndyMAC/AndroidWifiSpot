@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MatrixWiFiSpot</string>
+    <string name="hello_world">WifiSpotTest!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="create">点击创建WIFI热点</string>
+    <string name="connect">点击连接WIFI热点</string>
+    <string name="output">扫描输出窗口</string>
+    <string name="scan">扫描特定热点</string>
+
+</resources>

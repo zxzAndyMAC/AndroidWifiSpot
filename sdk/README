@@ -1,0 +1,3 @@
+修改HTC不能启动热点bug
+
+新增字段 SSID_TAG 来标示SSID唯一性，可设置

@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dip"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" 
+        android:layout_centerHorizontal="true" 
+        android:id = "@+id/text"/>
+    <Button 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" 
+        android:id = "@+id/apcreat"
+        android:text="@string/create"
+        android:layout_below="@id/text"
+        />
+    
+    <Button 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" 
+        android:id = "@+id/apconnect"
+        android:text="@string/connect"
+        android:layout_below="@id/apcreat"
+        />
+    
+    <Button 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" 
+        android:id = "@+id/apscan"
+        android:text="@string/scan"
+        android:layout_below="@id/apconnect"
+        />
+        
+    <TextView
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/output" 
+		        android:textSize="18sp"
+		        android:textStyle="bold"
+		        android:id="@+id/outputtitle"
+		        android:layout_alignParentLeft = "true"
+		        android:layout_below="@id/apscan"
+		        android:gravity="center_vertical"
+		        android:layout_marginTop="10dip"
+		        />
+    <TextView
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:id="@+id/outputinfo"
+		        android:layout_alignParentLeft = "true"
+		        android:layout_below="@id/outputtitle"
+		        android:layout_marginTop="5dip"
+		        android:lines="20"
+		        />
+
+</RelativeLayout>
